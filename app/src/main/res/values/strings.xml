@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NotepadComposeApp</string>
+    <string name="fab_button_label_new_note">Add new note</string>
+</resources>
