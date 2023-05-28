@@ -1,5 +1,6 @@
 package com.notepadcomposeapp.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,9 +20,13 @@ import com.notepadcomposeapp.model.Note
 import com.notepadcomposeapp.ui.theme.Blue80
 
 @Composable
-fun NoteItem(note: Note) {
+fun NoteItem(note: Note, index: Int, onClickItem: (Int) -> Unit) {
     Card(
-        modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+        modifier = Modifier
+            .padding(horizontal = 15.dp, vertical = 5.dp)
+            .clickable {
+                onClickItem(index)
+            },
         colors = CardDefaults.cardColors(containerColor = Blue80)
     ) {
         Column(
@@ -51,7 +56,9 @@ fun NoteItem(note: Note) {
                         text = note.creationDate,
                         style = MaterialTheme.typography.labelSmall,
                         fontSize = 12.sp,
-                        modifier = Modifier.fillMaxWidth().padding(top = 10.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.dp),
                         color = MaterialTheme.colorScheme.outline,
                         textAlign = TextAlign.End
                     )
@@ -68,5 +75,7 @@ fun TestNote() {
         title = "Note 10",
         text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce id ornare ligula, in feugiat nunc. Mauris non est enim."
     )
-    NoteItem(note = note)
+    NoteItem(note = note, 0) {
+
+    }
 }

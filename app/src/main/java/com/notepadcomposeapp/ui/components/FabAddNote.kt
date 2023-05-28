@@ -51,7 +51,7 @@ fun ExFloatingActionButtonAddNote(listState: LazyListState) {
         },
         icon = {
             Icon(
-                imageVector = Icons.Rounded.Add,
+                imageVector = Icons.Rounded.Edit,
                 contentDescription = stringResource(id = R.string.fab_button_label_new_note),
                 tint = Color.White
             )

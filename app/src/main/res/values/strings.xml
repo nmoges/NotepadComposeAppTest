@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">NotepadComposeApp</string>
-    <string name="fab_button_label_new_note">Add new note</string>
+    <string name="fab_button_label_new_note">New note</string>
+    <string name="text_field_hint_search_note">Search note</string>
 </resources>

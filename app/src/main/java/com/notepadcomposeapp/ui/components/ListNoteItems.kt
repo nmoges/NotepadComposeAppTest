@@ -21,7 +21,9 @@ fun ListNotes(notes: List<Note>, listState: LazyListState) {
             Spacer(modifier = Modifier.height(5.dp))
         }
         items(notes) { note ->
-            NoteItem(note = note)
+            NoteItem(note = note, notes.indexOf(note)) {
+                // Click on index to handle
+            }
         }
         item {
             Spacer(modifier = Modifier.height(5.dp))
