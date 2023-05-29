@@ -15,7 +15,6 @@ import androidx.navigation.compose.rememberNavController
 import com.notepadcomposeapp.navigation.Navigation
 import com.notepadcomposeapp.ui.NoteViewModel
 import com.notepadcomposeapp.ui.components.ExFloatingActionButtonAddNote
-import com.notepadcomposeapp.ui.components.screens.ScreenListNotes
 import com.notepadcomposeapp.ui.theme.NotepadComposeAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,10 +33,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     containerColor = MaterialTheme.colorScheme.background,
                     content = {
-                              Navigation(
-                                  navHostController = navHostController,
-                                  noteViewModel = noteViewModel
-                              )
+                        Navigation(
+                            navHostController = navHostController,
+                            noteViewModel = noteViewModel
+                        )
                     },
                     floatingActionButton = {
                         ExFloatingActionButtonAddNote(
