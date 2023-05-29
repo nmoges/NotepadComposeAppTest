@@ -40,7 +40,7 @@ fun ExFloatingActionButtonAddNote(
                 )
             },
             onClick = {
-                navHostController.navigate(Screen.EditNoteScreen.route)
+                navHostController.navigate(Screen.ScreenEditNote.route)
             },
             expanded = listState.value.isScrollingUp()
         )
