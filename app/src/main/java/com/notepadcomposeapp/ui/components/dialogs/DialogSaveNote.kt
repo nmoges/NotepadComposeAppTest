@@ -1,5 +1,7 @@
 package com.notepadcomposeapp.ui.components.dialogs
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +19,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -75,6 +78,8 @@ private fun BottomButtons(
     navHostController: NavHostController,
     dialogState: MutableState<Boolean>
 ) {
+    val context: Context = LocalContext.current
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,6 +98,7 @@ private fun BottomButtons(
             modifier = Modifier.padding(start = 10.dp),
             onClick = {
                 dialogState.value = false
+                Toast.makeText(context, context.getString(R.string.toast_note_saved), Toast.LENGTH_SHORT).show()
                 navHostController.navigate(Screen.ScreenListNotes.route)
             }
         ) {
