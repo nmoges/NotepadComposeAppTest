@@ -2,4 +2,6 @@
     <string name="app_name">NotepadComposeApp</string>
     <string name="fab_button_label_new_note">New note</string>
     <string name="text_field_hint_search_note">Search note</string>
+    <string name="text_field_hint_note_title">Title</string>
+    <string name="text_field_hint_note_description">Write note</string>
 </resources>
