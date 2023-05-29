@@ -13,6 +13,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
@@ -22,14 +24,15 @@ import com.notepadcomposeapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchTextField(state: MutableState<TextFieldValue>) {
+fun SearchTextField() {
+    val searchQueryState = remember { mutableStateOf(TextFieldValue("")) }
     TextField(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = 10.dp, end = 10.dp),
-        value = state.value,
+        value = searchQueryState.value,
         onValueChange = { value ->
-            state.value = value
+            searchQueryState.value = value
         },
         placeholder = {
             Text(stringResource(id = R.string.text_field_hint_search_note))

@@ -9,10 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import com.notepadcomposeapp.model.Note
 
 @Composable
-fun ListNotes(notes: List<Note>, listState: LazyListState) {
+fun ListNotes(notes: List<Note>) {
+    val listState = rememberLazyListState()
     LazyColumn(
         state = listState,
         verticalArrangement = Arrangement.spacedBy(5.dp)

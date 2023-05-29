@@ -1,5 +1,6 @@
 package com.notepadcomposeapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,25 +19,20 @@ import com.notepadcomposeapp.ui.theme.NotepadComposeAppTheme
 
 class MainActivity : ComponentActivity() {
 
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             NotepadComposeAppTheme {
-                val listState = rememberLazyListState()
-                val searchQuery = remember { mutableStateOf(TextFieldValue("")) }
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     containerColor = MaterialTheme.colorScheme.background,
-                    content = { paddingValues ->
-                        ScreenListNotes(
-                            paddingValues = paddingValues,
-                            searchQuery = searchQuery,
-                            listState = listState
-                        )
+                    content = {
+                        ScreenListNotes()
                     },
                     floatingActionButton = {
-                        ExFloatingActionButtonAddNote(listState)
+                        ExFloatingActionButtonAddNote()
                     }
                 )
             }

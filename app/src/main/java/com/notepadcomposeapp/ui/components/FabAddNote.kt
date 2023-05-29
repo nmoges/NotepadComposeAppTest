@@ -1,10 +1,8 @@
 package com.notepadcomposeapp.ui.components
 
 import android.util.Log
-import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.FloatingActionButton
@@ -17,7 +15,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.notepadcomposeapp.R
-import com.notepadcomposeapp.extensions.isScrollingUp
 
 @Deprecated("Just for testing")
 @Preview
@@ -40,7 +37,7 @@ fun FloatingActionButtonAddNote() {
 }
 
 @Composable
-fun ExFloatingActionButtonAddNote(listState: LazyListState) {
+fun ExFloatingActionButtonAddNote() {
     ExtendedFloatingActionButton(
         containerColor = MaterialTheme.colorScheme.secondary,
         text = {
@@ -57,7 +54,7 @@ fun ExFloatingActionButtonAddNote(listState: LazyListState) {
             )
         },
         onClick = { },
-        expanded = listState.isScrollingUp(),
+        expanded = false //listState.isScrollingUp(),
     )
 }
 

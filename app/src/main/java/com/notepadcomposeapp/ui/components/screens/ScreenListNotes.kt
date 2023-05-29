@@ -16,15 +16,11 @@ import com.notepadcomposeapp.ui.components.SearchTextField
 import com.notepadcomposeapp.ui.components.notes
 
 @Composable
-fun ScreenListNotes(
-    paddingValues: PaddingValues,
-    searchQuery: MutableState<TextFieldValue>,
-    listState: LazyListState
-) {
-    Column(modifier = Modifier.padding(paddingValues)) {
+fun ScreenListNotes() {
+    Column {
         Spacer(modifier = Modifier.height(15.dp))
-        SearchTextField(searchQuery)
+        SearchTextField()
         Spacer(modifier = Modifier.height(5.dp))
-        ListNotes(notes = notes, listState = listState)
+        ListNotes(notes = notes)
     }
 }
