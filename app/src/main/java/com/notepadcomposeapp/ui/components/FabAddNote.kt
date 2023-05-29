@@ -1,43 +1,23 @@
 package com.notepadcomposeapp.ui.components
 
-import android.util.Log
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.ExtendedFloatingActionButton
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.notepadcomposeapp.R
-
-@Deprecated("Just for testing")
-@Preview
-@Composable
-fun FloatingActionButtonAddNote() {
-    FloatingActionButton(
-        onClick = {
-            // Handle onClick method
-            Log.d("TEST_FAB", "Click detected")
-        },
-        containerColor = MaterialTheme.colorScheme.secondary,
-        shape = RoundedCornerShape(16.dp)
-    ) {
-        Icon(
-            imageVector = Icons.Rounded.Edit,
-            contentDescription = "Add new note",
-            tint = Color.White
-        )
-    }
-}
+import com.notepadcomposeapp.extensions.isScrollingUp
+import com.notepadcomposeapp.ui.NoteViewModel
 
 @Composable
-fun ExFloatingActionButtonAddNote() {
+fun ExFloatingActionButtonAddNote(noteViewModel: NoteViewModel) {
+    val listState = noteViewModel.listStateFlow.collectAsState()
+
     ExtendedFloatingActionButton(
         containerColor = MaterialTheme.colorScheme.secondary,
         text = {
@@ -54,7 +34,7 @@ fun ExFloatingActionButtonAddNote() {
             )
         },
         onClick = { },
-        expanded = false //listState.isScrollingUp(),
+        expanded = listState.value.isScrollingUp()
     )
 }
 
