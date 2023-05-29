@@ -4,22 +4,22 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.notepadcomposeapp.navigation.Navigation
-import com.notepadcomposeapp.ui.NoteViewModel
 import com.notepadcomposeapp.ui.components.ExFloatingActionButtonAddNote
 import com.notepadcomposeapp.ui.theme.NotepadComposeAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private val noteViewModel: NoteViewModel by viewModels()
     private lateinit var navHostController: NavHostController
 
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -35,13 +35,13 @@ class MainActivity : ComponentActivity() {
                     content = {
                         Navigation(
                             navHostController = navHostController,
-                            noteViewModel = noteViewModel
+                            noteViewModel = hiltViewModel()
                         )
                     },
                     floatingActionButton = {
                         ExFloatingActionButtonAddNote(
                             navHostController = navHostController,
-                            noteViewModel = noteViewModel
+                            noteViewModel = hiltViewModel()
                         )
                     }
                 )
