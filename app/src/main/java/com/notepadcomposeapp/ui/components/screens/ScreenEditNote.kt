@@ -30,12 +30,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.notepadcomposeapp.R
+import com.notepadcomposeapp.ui.NoteViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun ScreenEditNote() {
+fun ScreenEditNote(navHostController: NavHostController) {
     val inputTitleValue = remember { mutableStateOf(TextFieldValue()) }
     val inputDescriptionValue = remember { mutableStateOf(TextFieldValue()) }
 
@@ -45,7 +46,7 @@ fun ScreenEditNote() {
             .background(Color.White)
     ) {
         Spacer(modifier = Modifier.padding(top = 10.dp))
-        DisplayTopOptions()
+        DisplayTopOptions(navHostController)
         // Note title
         TextField(
             modifier = Modifier.fillMaxWidth(),
@@ -99,16 +100,16 @@ fun ScreenEditNote() {
     }
 }
 
-@Preview
 @Composable
-fun DisplayTopOptions() {
+fun DisplayTopOptions(navHostController: NavHostController) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
+        // Action "Back"
         IconButton(
             onClick = {
-
+                navHostController.navigate(Screen.ScreenListNotes.route)
             }
         ) {
             Icon(
@@ -118,9 +119,10 @@ fun DisplayTopOptions() {
             )
         }
         Row {
+            // Action "Save note"
             IconButton(
                 onClick = {
-
+                    navHostController.navigate(Screen.ScreenListNotes.route)
                 }
             ) {
                 Icon(
@@ -129,6 +131,7 @@ fun DisplayTopOptions() {
                     contentDescription = ""
                 )
             }
+            // Action "Share note"
             IconButton(
                 onClick = {
 
