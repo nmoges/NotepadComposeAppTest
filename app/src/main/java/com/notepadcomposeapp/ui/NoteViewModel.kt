@@ -2,6 +2,7 @@ package com.notepadcomposeapp.ui
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.lifecycle.ViewModel
+import com.notepadcomposeapp.model.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,5 +29,9 @@ class NoteViewModel @Inject constructor() : ViewModel() {
     fun setFloatingActionButtonVisibility(isVisible: Boolean) {
         _isFloatingActionButtonVisible.value = isVisible
     }
+    // endregion
+
+    // region Note
+    var selectedNote: Note? = null
     // endregion
 }

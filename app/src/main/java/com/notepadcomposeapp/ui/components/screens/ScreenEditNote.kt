@@ -33,16 +33,27 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.notepadcomposeapp.R
+import com.notepadcomposeapp.ui.NoteViewModel
 import com.notepadcomposeapp.ui.components.dialogs.DialogSaveNote
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenEditNote(
+    noteViewModel: NoteViewModel,
     navHostController: NavHostController
 ) {
     val inputTitleValue = remember { mutableStateOf(TextFieldValue()) }
     val inputDescriptionValue = remember { mutableStateOf(TextFieldValue()) }
     val dialogState: MutableState<Boolean> = remember { mutableStateOf(false) }
+
+    // Check if need to edit a selected note
+    noteViewModel.selectedNote?.let {
+        inputTitleValue.value = TextFieldValue(it.title)
+        inputDescriptionValue.value = TextFieldValue(it.text)
+        // Prevent recomposition with same values
+        noteViewModel.selectedNote = null
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         // Screen
         Column(

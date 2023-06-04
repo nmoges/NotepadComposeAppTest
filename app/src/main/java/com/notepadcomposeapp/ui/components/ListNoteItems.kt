@@ -10,11 +10,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.notepadcomposeapp.model.Note
 import com.notepadcomposeapp.ui.NoteViewModel
+import com.notepadcomposeapp.ui.components.screens.Screen
 
 @Composable
-fun ListNotes(notes: List<Note>, noteViewModel: NoteViewModel) {
+fun ListNotes(
+    navHostController: NavHostController,
+    notes: List<Note>,
+    noteViewModel: NoteViewModel
+) {
     noteViewModel.setListState(rememberLazyListState())
     val listState = noteViewModel.listStateFlow.collectAsState()
     LazyColumn(
@@ -27,6 +33,8 @@ fun ListNotes(notes: List<Note>, noteViewModel: NoteViewModel) {
         items(notes) { note ->
             NoteItem(note = note, notes.indexOf(note)) {
                 // Click on index to handle
+                noteViewModel.selectedNote = note
+                navHostController.navigate(Screen.ScreenEditNote.route)
             }
         }
         item {

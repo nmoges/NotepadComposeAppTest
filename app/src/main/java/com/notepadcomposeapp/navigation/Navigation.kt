@@ -18,13 +18,13 @@ fun Navigation(
         composable(route = Screen.ScreenListNotes.route) {
             it.destination.label = Screen.ScreenListNotes::class.java.simpleName
             noteViewModel.setFloatingActionButtonVisibility(true)
-            ScreenListNotes(noteViewModel = noteViewModel)
+            ScreenListNotes(noteViewModel, navHostController)
         }
 
-        composable(route = Screen.EditNoteScreen.route) {
-            it.destination.label = Screen.EditNoteScreen::class.java.simpleName
+        composable(route = Screen.ScreenEditNote.route) {
+            it.destination.label = Screen.ScreenEditNote::class.java.simpleName
             noteViewModel.setFloatingActionButtonVisibility(false)
-            ScreenEditNote(navHostController)
+            ScreenEditNote(noteViewModel, navHostController)
         }
     }
 }
