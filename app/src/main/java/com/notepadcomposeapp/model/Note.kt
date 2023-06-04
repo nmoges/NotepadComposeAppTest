@@ -7,5 +7,5 @@ data class Note(
     var title: String,
     var text: String,
     var creationDate: String = Calendar.getInstance().getFormattedDate(),
-    var lastUpdateData: String? = null
+    var lastUpdateDate: String? = null
 )

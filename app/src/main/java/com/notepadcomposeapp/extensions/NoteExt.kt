@@ -7,6 +7,13 @@ import com.notepadcomposeapp.model.Note
 fun Note.toNoteEntity() = NoteEntity(
     title = this.title,
     text = this.text,
-    creationData = this.creationDate,
-    lastUpdateDate = this.lastUpdateData
+    creationDate = this.creationDate,
+    lastUpdateDate = this.lastUpdateDate
+)
+
+fun NoteEntity.toNote() = Note(
+    title = this.title,
+    text = this.text,
+    creationDate = this.creationDate,
+    lastUpdateDate = this.lastUpdateDate
 )

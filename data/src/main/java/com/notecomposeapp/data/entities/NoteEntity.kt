@@ -6,9 +6,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "notes")
 data class NoteEntity(
-    @PrimaryKey val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo val title: String,
     @ColumnInfo val text: String,
-    @ColumnInfo(name = "creation_date") val creationData: String,
+    @ColumnInfo(name = "creation_date") val creationDate: String,
     @ColumnInfo(name = "last_update_date") val lastUpdateDate: String?
 )
