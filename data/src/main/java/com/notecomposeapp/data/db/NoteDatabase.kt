@@ -7,5 +7,5 @@ import com.notecomposeapp.data.entities.NoteEntity
 
 @Database(entities = [NoteEntity::class], version = 1, exportSchema = false)
 abstract class NoteDatabase: RoomDatabase() {
-    abstract fun noteDao(): NoteDao
+    abstract val noteDao: NoteDao
 }
