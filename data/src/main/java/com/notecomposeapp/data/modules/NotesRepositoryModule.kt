@@ -2,6 +2,7 @@ package com.notecomposeapp.data.modules
 
 import android.content.Context
 import com.notecomposeapp.data.dao.NoteDao
+import com.notecomposeapp.data.repositories.NotesRepository
 import com.notecomposeapp.data.repositories.NotesRepositoryImpl
 import dagger.Module
 import dagger.Provides
@@ -19,7 +20,7 @@ object NotesRepositoryModule {
     fun provideRepository(
         noteDao: NoteDao,
         @ApplicationContext context: Context
-    ) : NotesRepositoryImpl {
+    ) : NotesRepository {
         return NotesRepositoryImpl(noteDao)
     }
 }

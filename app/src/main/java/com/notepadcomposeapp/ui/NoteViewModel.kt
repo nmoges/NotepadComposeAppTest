@@ -2,14 +2,20 @@ package com.notepadcomposeapp.ui
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.notecomposeapp.data.repositories.NotesRepository
+import com.notepadcomposeapp.extensions.toNoteEntity
 import com.notepadcomposeapp.model.Note
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class NoteViewModel @Inject constructor() : ViewModel() {
+class NoteViewModel @Inject constructor(
+    private val notesRepository: NotesRepository
+) : ViewModel() {
 
     // region List notes state
     private val _listStateFlow = MutableStateFlow(LazyListState())
@@ -34,4 +40,10 @@ class NoteViewModel @Inject constructor() : ViewModel() {
     // region Note
     var selectedNote: Note? = null
     // endregion
+
+    fun insertNote(note: Note) {
+        viewModelScope.launch {
+            notesRepository.insertNote(note.toNoteEntity())
+        }
+    }
 }

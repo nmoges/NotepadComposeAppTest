@@ -31,8 +31,10 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.notepadcomposeapp.R
+import com.notepadcomposeapp.model.Note
 import com.notepadcomposeapp.ui.NoteViewModel
 import com.notepadcomposeapp.ui.components.dialogs.DialogSaveNote
 
@@ -62,7 +64,13 @@ fun ScreenEditNote(
                 .background(Color.White)
         ) {
             Spacer(modifier = Modifier.padding(top = 10.dp))
-            DisplayTopOptions(dialogState, navHostController)
+            DisplayTopOptions(
+                inputTitleValue,
+                inputDescriptionValue,
+                noteViewModel,
+                dialogState,
+                navHostController
+            )
             // Note title
             TextField(
                 modifier = Modifier.fillMaxWidth(),
@@ -123,6 +131,9 @@ fun ScreenEditNote(
 
 @Composable
 fun DisplayTopOptions(
+    inputTitleValue: MutableState<TextFieldValue>,
+    inputTextValue: MutableState<TextFieldValue>,
+    noteViewModel: NoteViewModel,
     dialogState: MutableState<Boolean>,
     navHostController: NavHostController
 ) {
@@ -147,6 +158,12 @@ fun DisplayTopOptions(
             IconButton(
                 onClick = {
                     dialogState.value = true
+                    noteViewModel.insertNote(
+                        createNewNote(
+                            title = inputTitleValue.value.text,
+                            text = inputTextValue.value.text
+                        )
+                    )
                 }
             ) {
                 Icon(
@@ -169,4 +186,11 @@ fun DisplayTopOptions(
             }
         }
     }
+}
+
+private fun createNewNote(title: String, text: String): Note {
+    return Note(
+        title = title,
+        text = text
+    )
 }
